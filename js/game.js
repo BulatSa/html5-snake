@@ -7,6 +7,7 @@ const game = {
   sprites: {
     background: null,
     cell: null,
+    body: null,
   },
 
   init() {
@@ -27,23 +28,25 @@ const game = {
     const required = Object.keys(this.sprites).length;
     const onAssetLoad = () => {
       loaded++;
-      if (loaded >=required) {
+      if (loaded >= required) {
         callback();
       }
-    }
+    };
 
     for (let key in this.sprites) {
       this.sprites[key] = new Image();
       this.sprites[key].src = `img/${key}.png`;
-      this.sprites[key].addEventListener('load', onAssetLoad);
+      this.sprites[key].addEventListener("load", onAssetLoad);
     }
   },
 
   run() {
     this.board.create();
+    this.snake.create();
     window.requestAnimationFrame(() => {
       this.ctx.drawImage(this.sprites.background, 0, 0);
       this.board.render();
+      this.snake.render();
     });
   },
 };

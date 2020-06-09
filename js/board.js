@@ -29,6 +29,12 @@ game.board = {
     };
   },
 
+  getCell(row, col) {
+    return this.cells.find((cell) => {
+      return row === cell.row && col === cell.col;
+    });
+  },
+
   render() {
     this.cells.forEach((cell) => {
       this.game.ctx.drawImage(this.game.sprites.cell, cell.x, cell.y);
